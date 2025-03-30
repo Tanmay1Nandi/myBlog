@@ -1,6 +1,12 @@
 const express = require("express")
-const PORT = 8000;
-
+const {connectToDb} = require("../connection")
 const app = express();
+const dotenv = require("dotenv")
+dotenv.config();
 
-app.listen(PORT, ()=> console.log(`Server started at PORT: ${PORT}!`))
+//connecting to database
+connectToDb(process.env.MONGO)
+.then(()=> console.log("MonbgoDb connected!"))
+.catch((err) => console.log(err))
+
+app.listen(process.env.PORT, ()=> console.log(`Server started at PORT: ${process.env.PORT}!`))
