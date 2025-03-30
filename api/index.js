@@ -4,6 +4,9 @@ const app = express();
 const dotenv = require("dotenv")
 dotenv.config();
 
+//middlewares
+app.use(express.json());
+
 //connecting to database
 connectToDb(process.env.MONGO)
 .then(()=> console.log("MonbgoDb connected!"))
@@ -13,5 +16,7 @@ app.listen(process.env.PORT, ()=> console.log(`Server started at PORT: ${process
 
 //Routes
 const userRouter = require("./routes/user.route")
+const authRouter = require("./routes/auth.route")
 
 app.use("/api/test",userRouter);
+app.use("/api/auth",authRouter);
