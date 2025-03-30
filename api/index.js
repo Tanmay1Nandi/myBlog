@@ -10,3 +10,8 @@ connectToDb(process.env.MONGO)
 .catch((err) => console.log(err))
 
 app.listen(process.env.PORT, ()=> console.log(`Server started at PORT: ${process.env.PORT}!`))
+
+//Routes
+const userRouter = require("./routes/user.route")
+
+app.use("/api/test",userRouter);
