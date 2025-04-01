@@ -66,7 +66,7 @@ export default function Signup() {
               </div>
               <div className="">
                 <Label>Your password</Label>
-                <TextInput type='password' placeholder='Password' id='password' onChange={handleChange}/>
+                <TextInput type='password' placeholder='*********' id='password' onChange={handleChange}/>
               </div>
               <Button type='submit' className='bg-gradient-to-r from-purple-500 to-pink-500' disabled={loading}>
                 {

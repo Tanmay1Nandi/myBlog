@@ -2,10 +2,20 @@ import { Alert, Button, Label, Spinner, TextInput } from 'flowbite-react'
 import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
+//using Redux tool-kit
+import { signInStart, signInSuccess, signInFailure } from '../app/user/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
+
 export default function Signin() {
-  const[errorMessage, setErrorMessage] = useState(null);
-  const[loading, setLoading] = useState(false);
+  // const[errorMessage, setErrorMessage] = useState(null);
+  // const[loading, setLoading] = useState(false);
+
   const [formData, setFormData] = useState({});
+
+  //Redux
+  const {loading, error: errorMessage} = useSelector(state => state.user);
+  const dispatch = useDispatch();
+
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -15,11 +25,15 @@ export default function Signin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if(!formData.email || !formData.password){
-      return setErrorMessage("Please fill all the fields.");
+      // return setErrorMessage("Please fill all the fields.");
+      return dispatch(signInFailure("Please fill all the fields."))
     }
     try {
-      setLoading(true);
-      setErrorMessage(null);
+      // setLoading(true);
+      // setErrorMessage(null);
+
+      //Using Redux toolkit
+      dispatch(signInStart());
       const response = await fetch("/api/auth/signin", {
         method: "POST",
         headers: {"Content-Type" : "application/json"},
@@ -27,16 +41,25 @@ export default function Signin() {
       });
       const data = await response.json();
       if (data.success === false){
-        setLoading(false);
-        return setErrorMessage(data.message);
+        // setLoading(false);
+        // return setErrorMessage(data.message);
+
+        //Redux
+        return dispatch(signInFailure(data.message));
       }
-      setLoading(false);
+      // setLoading(false);
       if(response.ok){
+        //Redux
+        dispatch(signInSuccess(data));
+
         navigate("/")
       }
     } catch (error) {
-      setErrorMessage(error.message);
-      setLoading(false);
+      // setErrorMessage(error.message);
+      // setLoading(false);
+
+      //Redux
+      dispatch(signInFailure(error.message));
     }
   }
 
