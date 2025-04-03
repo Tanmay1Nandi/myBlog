@@ -2,10 +2,12 @@ const express = require("express")
 const {connectToDb} = require("./connection")
 const app = express();
 const dotenv = require("dotenv")
+const cookieParser = require("cookie-parser")
 dotenv.config();
 
 //middlewares
 app.use(express.json());
+app.use(cookieParser());
 
 //connecting to database
 connectToDb(process.env.MONGO)
