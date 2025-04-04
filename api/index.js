@@ -20,7 +20,7 @@ app.listen(process.env.PORT, ()=> console.log(`Server started at PORT: ${process
 const userRouter = require("./routes/user.route")
 const authRouter = require("./routes/auth.route")
 
-app.use("/api/test",userRouter);
+app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
 
 
