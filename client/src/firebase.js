@@ -10,7 +10,7 @@ const firebaseConfig = {
   projectId: "byblog-19cef",
   storageBucket: "byblog-19cef.firebasestorage.app",
   messagingSenderId: "16478414161",
-  appId: "1:16478414161:web:394eebf77d65d0d8b89f70"
+  appId: "1:16478414161:web:394eebf77d65d0d8b89f70",
 };
 
 // Initialize Firebase
