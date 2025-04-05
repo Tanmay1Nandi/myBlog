@@ -6,3 +6,11 @@
 .flowbite-text-input .icon {
     cursor: pointer !important;
   }
+
+body{
+  height:100vh;
+}
+
+.ql-editor{
+  font-size: 1.05rem;
+}
