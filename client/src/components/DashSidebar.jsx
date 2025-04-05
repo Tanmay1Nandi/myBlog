@@ -2,6 +2,8 @@ import {Sidebar, SidebarItem, SidebarItemGroup, SidebarItems} from "flowbite-rea
 import { HiArrowSmRight, HiUser } from "react-icons/hi"
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom"
+import { signoutSuccess } from "../app/user/userSlice";
+import { useDispatch } from "react-redux";
 
 export default function DashSidebar() {
     const location = useLocation();
@@ -13,6 +15,24 @@ export default function DashSidebar() {
       setTab(tabForUrl);
     }
   },[location.search])
+
+  const dispatch = useDispatch();
+  const handleSignout = async () => {
+          try {
+              const response = await fetch("/api/user/signout", {
+                  method: "POST",
+              })
+              const data = await response.json();
+              if(!response.ok){
+                  console.log(data.message);
+              }
+              else{
+                  dispatch(signoutSuccess());
+              }
+          } catch (error) {
+              console.log(error.message);
+          }
+      }
   return (
     <div>
         <Sidebar className="w-full md:w-56">
@@ -23,7 +43,7 @@ export default function DashSidebar() {
                             Profile
                         </SidebarItem>
                     </Link>
-                    <SidebarItem icon={HiArrowSmRight}  labelColor='dark'>
+                    <SidebarItem icon={HiArrowSmRight}  labelColor='dark' onClick={handleSignout}>
                         Sign out
                     </SidebarItem>
                 </SidebarItemGroup>
