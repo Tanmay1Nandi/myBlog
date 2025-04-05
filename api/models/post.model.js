@@ -16,7 +16,7 @@ const postSchema = new mongoose.Schema({
     },
     image: {
         type: String,
-        default: "https://tse2.mm.bing.net/th?id=OIP.UmWSXseYC8zUioUB9OhOaQHaDQ&pid=Api&P=0&h=180"
+        default: "https://tse4.mm.bing.net/th?id=OIP.tuchuEvgEQfcfuxCBEKsBQHaDt&pid=Api&P=0&h=180"
     },
     category: {
         type:String,
