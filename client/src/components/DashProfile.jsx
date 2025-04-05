@@ -9,11 +9,12 @@ import {IoIosCamera} from "react-icons/io"
 import {HiOutlineExclamationCircle} from "react-icons/hi"
 import { updateStart, updateSuccess, updateFailure, deleteUserStart, deleteUserSuccess, deleteUserFailure, signoutSuccess } from '../app/user/userSlice';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 export default function DashProfile() {
     const dispatch = useDispatch();
     const [edit, setEdit] = useState(false);
-    const {currentUser, error} = useSelector(state => state.user);
+    const {currentUser, error, loading} = useSelector(state => state.user);
     const [imageFile, setImageFile] = useState(null);
     const [imageFileUrl, setImageFileUrl] = useState(null);
     const [imageFileUploadingProgress, setImageFileUploadingProgress] = useState(null);
@@ -184,7 +185,14 @@ export default function DashProfile() {
             <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username} onChange={handleChange}/>
             <TextInput type='text' id='email' placeholder='abc@gmail.com' defaultValue={currentUser.email} onChange={handleChange}/>
             <TextInput type='text' id='password' placeholder='password' onChange={handleChange}/>
-            <Button type='submit' outline className='border-2'>Update</Button>
+            <Button type='submit' outline className='border-2' disabled={loading || imageFileUploading}>{loading ? "Loading..." : "Update"}</Button>
+            {
+                currentUser && currentUser.isAdmin && (
+                    <Link to={"/create-post"}>
+                        <Button className='bg-gradient-to-r from-purple-500 to-pink-500 w-full'>Create a post</Button>
+                    </Link>
+                )
+            }
         </form>
         <div className="text-red-500 flex justify-between mt-5">
             <span className='cursor-pointer' onClick={() => setShowModal(true)}>Delete Account</span>
@@ -192,7 +200,7 @@ export default function DashProfile() {
         </div>
         {updateUserSuccess && <Alert className='mt-3' color='success'>{updateUserSuccess}</Alert>}
         {updateUserError && <Alert className='mt-3' color='failure'>{updateUserError}</Alert>}
-        {error && <Alert className='mt-3' color='failure'>{error}</Alert>}
+        {/* {error && <Alert className='mt-3' color='failure'>{error}</Alert>} */}
         <Modal show={showModal} onClose={() => setShowModal(false)} size='md' popup>
             <ModalHeader />
             <ModalBody>

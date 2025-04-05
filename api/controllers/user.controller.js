@@ -20,14 +20,19 @@ const updateUser =async (req, res, next) => {
         req.body.password = bcryptjs.hashSync(req.body.password, 10);
     }
     if(req.body.username){
+        const oldUser = await User.findOne({username: req.body.username});
+        if (oldUser && oldUser._id.toString() !== req.params.userId) {
+            return next(errorHandler(400, "Username already exists"));
+        }
+
         if(req.body.username.length < 6 || req.body.username.length > 25){
-            return next(errorHandler(400, "Username must be between 6 to 25 characters"))
+            return next(errorHandler(400, "Username must be between 6 to 25 characters"));
         }
         if(req.body.username.includes(" ")){
-            return next(errorHandler(400, "Username cannot contain spaces"))
+            return next(errorHandler(400, "Username cannot contain spaces"));
         }
         if(req.body.username !== req.body.username.toLowerCase()){
-            return next(errorHandler(400, "Username must be lowercase"))
+            return next(errorHandler(400, "Username must be lowercase"));
         }
         if (!/^[a-z0-9_]+$/.test(req.body.username)) {
             return next(errorHandler(400, "Username can only contain lowercase letters, numbers, and _"));

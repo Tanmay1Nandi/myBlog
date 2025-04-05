@@ -20,7 +20,7 @@ const signup =async (req, res, next) => {
     const hashedPassword = bcryptjs.hashSync(password, 10)
 
     const newUser = new User({
-        username,
+        username : username.toLowerCase(),
         email,
         password : hashedPassword,
     })
