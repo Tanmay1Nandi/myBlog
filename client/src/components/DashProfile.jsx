@@ -180,7 +180,7 @@ export default function DashProfile() {
                 )}
                 <img src={imageFileUrl || currentUser.profilePicture} alt='user' onMouseOver={handleEdit} onMouseLeave={handleRemoveEdit} className={`rounded-full w-full h-full border-7 border-[lightGray] dark:border-[#5c5858] object-cover ${imageFileUploadingProgress && imageFileUploadingProgress <100 && "opacity-60"}`} />
             </div>
-            {edit && <div className='flex flex-row ml-49.5 sm:ml-51 mt-21 bg- absolute '><IoIosCamera className='mt-1'/>&nbsp; {imageFileUploadingProgress == 100 ? <span className='opacity-100 font-semibold text-white'>Update</span> : <span className='opacity-40'>Change</span>}</div>}
+            {edit && <div className='flex flex-row ml-49.5 sm:ml-51 mt-21 bg- absolute '><IoIosCamera className='mt-1'/>&nbsp; {imageFileUploadingProgress == 100 ? <span className='opacity-100 font-semibold text-white cursor-pointer'>Update</span> : <span className='opacity-60 cursor-pointer'>Change</span>}</div>}
             {imageFileUploadingError && <Alert color='failure'>{imageFileUploadingError}</Alert> }
             <TextInput type='text' id='username' placeholder='username' defaultValue={currentUser.username} onChange={handleChange}/>
             <TextInput type='text' id='email' placeholder='abc@gmail.com' defaultValue={currentUser.email} onChange={handleChange}/>

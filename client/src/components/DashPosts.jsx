@@ -7,6 +7,8 @@ export default function DashPosts() {
   const {currentUser} = useSelector(state => state.user);
   const [userPosts, setUserPosts] = useState([]);
 
+  const [showMore, setShowMore] = useState(true);
+
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -14,6 +16,9 @@ export default function DashPosts() {
         const data = await response.json();
         if(response.ok){
           setUserPosts(data.posts);
+          if(data.posts.length < 9){
+            setShowMore(false);
+          }
         }
       } catch (error) {
         console.log(error.message)
@@ -21,6 +26,23 @@ export default function DashPosts() {
     }
     if(currentUser.isAdmin) fetchPosts();
   },[currentUser._id]);
+
+  const handleShowMore = async() => {
+    const startIndex = userPosts.length;
+    try {
+      const response = await fetch(`/api/post/getposts?userId=${currentUser._id}&startIndex=${startIndex}`)
+      const data = await response.json();
+      if(response.ok){
+        setUserPosts((prev) => [...prev, ...data.posts]);
+        if(data.posts.length < 9){
+          setShowMore(false);
+        }
+      }
+    } catch (error) {
+      console.log(error.message);
+      
+    }
+  }
 
   return (
     <div className='table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-200 scrollbar-thumb-slate-500 dark:scrollbar-track-slate-700
@@ -74,6 +96,11 @@ export default function DashPosts() {
             ))}            
             </TableBody>
         </Table>
+        {
+          showMore && (
+            <button className='w-full text-teal-500 self-center text-sm py-7 cursor-pointer font-semibold underline' onClick={handleShowMore}>Show More</button>
+          )
+        }
         </>
       )
        : <>
