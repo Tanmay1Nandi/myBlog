@@ -1,5 +1,5 @@
 import {Sidebar, SidebarItem, SidebarItemGroup, SidebarItems} from "flowbite-react"
-import { HiArrowSmRight, HiUser, HiDocumentText } from "react-icons/hi"
+import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUser } from "react-icons/hi"
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom"
 import { signoutSuccess } from "../app/user/userSlice";
@@ -50,7 +50,15 @@ export default function DashSidebar() {
                         <SidebarItem active={tab === "posts"} icon={HiDocumentText} as='div'>
                             Posts
                         </SidebarItem>
-                    </Link>}
+                    </Link>
+                    }
+                    {currentUser.isAdmin &&
+                    <Link to="/dashboard?tab=users">
+                        <SidebarItem active={tab === "users"} icon={HiOutlineUser} as='div'>
+                            Users
+                        </SidebarItem>
+                    </Link>
+                    }
                     
                     <SidebarItem icon={HiArrowSmRight}  labelColor='dark' onClick={handleSignout}>
                         Sign out
