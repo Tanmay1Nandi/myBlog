@@ -72,7 +72,6 @@ const adminDeleteUser = async(req,res,next) => {
         return next(errorHandler(403, "You are not allowed to delete this user."))
     }
     try {
-        console.log(req.params.userId)
         await User.findByIdAndDelete(req.params.userId);
         res.status(200).json("User has been deleted");
     } catch (error) {
