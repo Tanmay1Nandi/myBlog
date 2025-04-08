@@ -51,6 +51,19 @@ export default function DashUsers() {
 
   const handleDeleteUser = async() => {
     setShowModal(false);
+    try {
+        const response = await fetch(`/api/user/adminDelete/${userIdToDelete}`, {
+            method: "DELETE",
+        });
+        const data = await response.json();
+        if(response.ok){
+            setUsers((prev) => prev.filter((user) => user._id !== userIdToDelete));
+        }else{
+            console.log(data.message);
+        }
+    } catch (error) {
+        console.log(error.message);
+    }
   }
 
   return (
@@ -111,9 +124,7 @@ export default function DashUsers() {
         </>
       )
        : <>
-       <p>You don't have any user yet.</p>
-       <p className='my-2'>Wait for 10 seconds before clicking the button, if you have a slow internet connection.</p>
-       {currentUser.isAdmin && <Link to="/create-post"><Button className='mt-2 bg-gradient-to-r from-purple-500 to-blue-500 cursor-pointer'>Create Post</Button></Link>}
+       <p>Unauthorized</p>
        </>}
        <Modal show={showModal} onClose={() => setShowModal(false)} size='md' popup>
           <ModalHeader />
