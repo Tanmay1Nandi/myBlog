@@ -1,20 +1,38 @@
 import { Alert, Button, Textarea, TextInput } from 'flowbite-react';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {useSelector} from "react-redux"
 import { Link } from 'react-router-dom';
+import Comment from './Comment';
 
-export default function CommentSection(prop) {
+export default function CommentSection({postId}) {
     const {currentUser} = useSelector(state => state.user);
     const [comment, setComment] = useState("");
     const [commentError, setCommentError] = useState(null);
 
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        const getComments = async () => {
+            try {
+                const response = await fetch(`/api/comment/getPostComments/${postId}`);
+                if(response.ok){
+                    const data = await response.json();
+                    setComments(data);
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        getComments();
+    }, [postId])
+
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setCommentError(null);
         if(comment.length > 200){
             return;
         }
 
-        const postId = prop.postId;
         try {
             const response = await fetch("/api/comment/create", {
                 method:"POST",
@@ -29,7 +47,8 @@ export default function CommentSection(prop) {
             });
             const data = await response.json();
             if(response.ok){
-                setCommentError(null);
+                setCommentError(null);                
+                setComments([data, ...comments]);
                 setComment("");
             }
         } catch (error) {
@@ -72,6 +91,23 @@ export default function CommentSection(prop) {
                 </form>
                 {
                     commentError && (<Alert color='failure' className='mt-5'>{commentError}</Alert>)
+                }
+                {
+                    comments.length === 0 ? (
+                        <p className='text-sm my-5'>No comments yet.</p>
+                    ) : (
+                        <>
+                            <div className="text-sm my-5 flex items-center gap-1">
+                                <p>Comments</p>
+                                <div className="border border-gray-400 py-0.5 mt-0.5 px-2 rounded-sm">
+                                    <p>{comments.length}</p>
+                                </div>
+                            </div>
+                            {comments.map((comment) => (
+                                <Comment key={comment._id} comment={comment}/>
+                            ))}
+                        </>
+                    )
                 }           
                 </>
             )

@@ -16,13 +16,23 @@ const createComment = async (req,res,next) => {
 
         await newComment.save();
 
-        res.status(200).json("New comment");
+        res.status(200).json(newComment);
     }
     catch(error){
         next(error);
     }
 }
 
+const getPostComments = async(req, res, next) => {
+    try {
+        const comments = await Comment.find({postId: req.params.postId}).sort({createdAt: -1});
+        res.status(200).json(comments);
+    } catch (error) {
+        next(error);
+    }
+}
+
 module.exports = {
-    createComment
+    createComment,
+    getPostComments
 }
