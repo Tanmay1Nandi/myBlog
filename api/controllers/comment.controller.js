@@ -103,11 +103,11 @@ const getComments = async(req, res, next) => {
             now.getMonth()-1,
             now.getDay(),
         )
-        const commentsInLastMonth = await Comment.countDocuments({createdAt: {$gte: oneMonthAgo}});
+        const lastMonthComments = await Comment.countDocuments({createdAt: {$gte: oneMonthAgo}});
         res.status(200).json({
             comments,
             totalComments,
-            commentsInLastMonth
+            lastMonthComments
         })
     } catch (error) {
         next(error);

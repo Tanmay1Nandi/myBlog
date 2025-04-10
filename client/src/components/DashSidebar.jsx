@@ -1,5 +1,5 @@
 import {Sidebar, SidebarItem, SidebarItemGroup, SidebarItems} from "flowbite-react"
-import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUser, HiAnnotation } from "react-icons/hi"
+import { HiArrowSmRight, HiUser, HiDocumentText, HiOutlineUser, HiAnnotation, HiChartPie } from "react-icons/hi"
 import React, { useEffect, useState } from 'react'
 import { Link, useLocation } from "react-router-dom"
 import { signoutSuccess } from "../app/user/userSlice";
@@ -36,10 +36,18 @@ export default function DashSidebar() {
           }
       }
   return (
-    <div>
         <Sidebar className="w-full md:w-56">
             <SidebarItems>
                 <SidebarItemGroup className="md:min-h-screen flex flex-col gap-0.5">
+                    {
+                        currentUser && currentUser.isAdmin && (
+                            <Link to={"/dashboard?tab=dashboard"}>
+                                <SidebarItem active={tab === "dashboard" || !tab} icon={HiChartPie} as='div'>
+                                    Dashboard
+                                </SidebarItem>
+                            </Link>
+                        )
+                    }
                     <Link to="/dashboard?tab=profile">
                         <SidebarItem active={tab === "profile"} icon={HiUser} label={currentUser.isAdmin ? "Admin" : "User"} labelColor='dark' as='div'>
                             Profile
@@ -74,6 +82,5 @@ export default function DashSidebar() {
                 </SidebarItemGroup>
             </SidebarItems>
         </Sidebar>
-    </div>
   )
 }
