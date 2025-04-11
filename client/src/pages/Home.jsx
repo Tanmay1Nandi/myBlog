@@ -22,7 +22,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div>
+    <div className=''>
       <div className="flex flex-col gap-5 px-3 p-28 max-w-6xl mx-auto">
         <h1 className='text-3xl font-bold lg:text-6xl'>Welcome to my Blog</h1>
         <p className='text-gray-500 text-xs lg:text-sm'>This is my first complete MERN project, its a Blog with many features for users and specially for the admins. I hope you will like this.</p>
@@ -32,11 +32,11 @@ export default function Home() {
         <CallToAction />
       </div>
 
-      <div className="max-w-6xl flex flex-col gap-8 py-3 p-3 mx-auto sm:w-100 md:w-full md:px-3">
+      <div className="max-w-6xl flex flex-col gap-8 py-3 p-3 sm:p-0 mx-auto sm:w-100 lg:w-full lg:px-3">
         {
           posts && posts.length>0 && (
             <div className='flex flex-col gap-6'>
-              <h2 className='text-2xl font-semibold text-center'>Recent Posts</h2>
+              <h2 className='text-2xl mt-5 font-semibold text-center'>Recent Posts</h2>
               <div className="flex flex-wrap gap-3">
                 {
                   posts.map((post) => (
@@ -44,7 +44,7 @@ export default function Home() {
                   ))
                 }
               </div>
-              <Link to={"/search"} className='text-lg text-teal-500 hover:underline text-center'>
+              <Link to={"/search"} className='text-lg mb-3 text-teal-500 hover:underline text-center'>
               View all posts
               </Link>
             </div>
