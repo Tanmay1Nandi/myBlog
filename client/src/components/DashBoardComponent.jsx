@@ -174,7 +174,9 @@ export default function DashBoardComponent() {
                     </TableBody>                
                 </Table>
             </div>
-            <div className="flex flex-col w-full md:w-auto shadow-md rounded-md dark:bg-gray-800 p-2">
+            <div className='dark:bg-gray-800 rounded-md table-auto overflow-x-scroll md:mx-auto p-3 scrollbar scrollbar-track-slate-200 scrollbar-thumb-slate-500 dark:scrollbar-track-slate-700
+    dark:scrollbar-thumb-slate-500
+    '>
                 <div className="flex justify-between p-3 text-sm font-semibold">
                     <h1 className='text-center p-2'>Recent Posts</h1>
                     <Button className='bg-gradient-to-r from-purple-500 to-pink-500'><Link to="/dashboard?tab=posts">See All</Link></Button>
