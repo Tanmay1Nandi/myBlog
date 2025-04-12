@@ -19,7 +19,7 @@ export default function FooterComponent() {
                         <FooterTitle title='About' />
                         <FooterLinkGroup col>
                             <FooterLink href='https://www.google.com' target='_blank' rel='noopener noreferrer'>
-                                My Pics
+                                My Projects
                             </FooterLink>
                             <FooterLink href='https://www.google.com' target='_blank' rel='noopener noreferrer'>
                                 About me

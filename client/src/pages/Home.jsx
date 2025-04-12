@@ -28,7 +28,7 @@ export default function Home() {
         <p className='text-gray-500 text-xs lg:text-sm'>This is my first complete MERN project, its a Blog with many features for users and specially for the admins. I hope you will like this.</p>
       <Link to="/search" className='text-xs sm:text-sm text-teal-500 text-bold hover:underlin'>View all post</Link>
       </div>
-      <div className="p-3 bg-amber-100 dark:bg-slate-700">
+      <div className="p-3 bg-blue-100 dark:bg-slate-700">
         <CallToAction />
       </div>
 
