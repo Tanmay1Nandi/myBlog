@@ -1,5 +1,5 @@
 import React from 'react'
-import CallToAction from '../components/CallToAction.jsx'
+import CallToAction from '../components/CallForAction.jsx'
 
 export default function Projects() {
   return (
