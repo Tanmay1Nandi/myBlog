@@ -6,7 +6,6 @@ const cookieParser = require("cookie-parser")
 
 //Deploy to render
 const path = require("path");
-const __directoryname = path.resolve();
 
 dotenv.config();
 
@@ -34,10 +33,10 @@ app.use("/api/comment",commentRouter);
 
 
 //Deploy to render
-app.use(express.static(path.join(__directoryname,'/client/dist')));
+app.use(express.static(path.join(__dirname,'/client/dist')));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__directoryname, "client", "dist", "index.html"));
+    res.sendFile(path.join(__dirname, "client", "dist", "index.html"));
 })
 
 //middleware to handle error
