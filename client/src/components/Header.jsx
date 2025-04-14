@@ -3,6 +3,7 @@ import {Avatar, Button, Dropdown, DropdownDivider, DropdownHeader, DropdownItem,
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import {AiOutlineSearch} from "react-icons/ai"
 import {FaMoon, FaSun} from "react-icons/fa"
+import {BsBrightnessHigh, BsBrightnessHighFill} from "react-icons/bs"
 import {useSelector, useDispatch} from "react-redux"
 import { toggleTheme } from '../app/theme/themeSlice'
 import { signoutSuccess } from '../app/user/userSlice'
@@ -68,25 +69,30 @@ export default function Header() {
             />
         </form>
         <Button className='w-12 h-10 lg:hidden' onClick={() => navigate("/search")} color='gray' pill>
-            <AiOutlineSearch />
+            <AiOutlineSearch/>
         </Button>
         <div className='flex gap-2 md:order-2'>
-            <Button className='w-12 h-10 inline mt-0.5 mr-2' color='gray' pill onClick={() => dispatch(toggleTheme())}>
-                {theme === "light" ? <FaMoon /> : <FaSun />}
+            <Button className='relative w-10 h-10 mt-0.5 mr-2 border-2' outline color='gray' pill onClick={() => dispatch(toggleTheme())}>
+                <div className='pl-0.5'>
+                {theme === "light" ? <FaMoon /> : <BsBrightnessHighFill />}    
+                </div>
                 </Button>
             {currentUser ? (
                 <Dropdown arrowIcon={false} inline crossOrigin="anonymous" 
                 label = {
-                    <Avatar alt="user" img={currentUser.profilePicture} rounded />
+                    <Avatar className='profile-pic' alt="user" img={currentUser.profilePicture} rounded />
                 }
                 >
                     <DropdownHeader>
                         <span className='block text-sm'>@{currentUser.username}</span>
                         <span className='block text-sm font-medium truncate'>{currentUser.email}</span>
                     </DropdownHeader>
+                    <Link to="/dashboard?tab=dashboard">
+                    <DropdownItem>Dashboard</DropdownItem></Link>
+                    <DropdownDivider/>
                     <Link to="/dashboard?tab=profile">
                     <DropdownItem>Profile</DropdownItem></Link>
-                    <DropdownDivider/>
+                    <DropdownDivider/>                  
                     <DropdownItem onClick={handleSignout}>Sign out</DropdownItem>
                 </Dropdown>
             )

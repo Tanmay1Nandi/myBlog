@@ -48,3 +48,7 @@ body{
 .dark .post-content a{
   color: red;
 }
+
+.profile-pic img{
+  object-fit: cover;
+}

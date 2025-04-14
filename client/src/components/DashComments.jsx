@@ -87,7 +87,7 @@ export default function DashComments() {
             <TableBody className='divide-y'>
             {comments.map((comment) => (             
                 <TableRow className='bg-white dark:border-gray-700 dark:bg-gray-800' key={comment._id}>
-                  <TableCell>{new Date(comment.upatedAt).toLocaleDateString()}</TableCell>
+                  <TableCell>{new Date(comment.updatedAt).toLocaleDateString()}</TableCell>
                   <TableCell>
                     {comment.content}
                   </TableCell>
