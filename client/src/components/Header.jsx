@@ -105,13 +105,13 @@ export default function Header() {
         </div>
         <NavbarCollapse>
             <NavbarLink active={path === "/"} as={"div"}>
-                <Link to='/'>Home</Link>
+                <Link style={{ display: 'block', width: '100%' }} to='/'>Home</Link>
             </NavbarLink>
             <NavbarLink active={path === "/about"} as={"div"}>
-                <Link to='/about'>About</Link>
+                <Link style={{ display: 'block', width: '100%' }} to='/about'>About</Link>
             </NavbarLink>
             <NavbarLink active={path === "/projects"} as={"div"}>
-                <Link to='/projects'>Projects</Link>
+                <Link style={{ display: 'block', width: '100%' }} to='/projects'>Projects</Link>
             </NavbarLink>
         </NavbarCollapse>
     </Navbar>

@@ -55,7 +55,7 @@ const signin = async (req, res, next) => {
             },
             process.env.SECRET,
             {
-                expiresIn: '1d'
+                expiresIn: '7d'
             }
         )
 
