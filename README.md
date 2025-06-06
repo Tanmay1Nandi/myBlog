@@ -45,7 +45,6 @@ A full-stack MERN blog application where **admins** can create blog posts, and *
 ### ✍️ Create a Post
 ![Create Post](./screenshots/create-post.png)
 
-> Store these images inside a `screenshots/` folder at the root of your project for them to appear correctly on GitHub.
 
 ---
 
