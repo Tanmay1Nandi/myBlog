@@ -23,11 +23,10 @@ A full-stack MERN blog application where **admins** can create blog posts, and *
 
 | Layer          | Tech                          |
 | -------------- | ----------------------------- |
-| Frontend       | React, Tailwind CSS, Flowbite |
+| Frontend       | React, Tailwind CSS, Flowbite, ReactQuill |
 | Backend        | Node.js, Express.js, MongoDB  |
 | Authentication | JSON Web Tokens (JWT)         |
 | File Storage   | Firebase Storage              |
-| Text Editor    | ReactQuill                    |
 | Deployment     | Render                        |
 
 ---
