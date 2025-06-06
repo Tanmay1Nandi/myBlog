@@ -107,17 +107,6 @@ The app is deployed on [Render](https://render.com/). It will auto-deploy when y
 
 ---
 
-## 🤝 Contributing
-
-Pull requests and suggestions are welcome! If you find a bug or want to add a new feature, feel free to open an issue or submit a PR.
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
 
 ## 🙇‍♂️ Author
 
