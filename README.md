@@ -121,5 +121,5 @@ This project is licensed under the MIT License.
 
 ## 🙇‍♂️ Author
 
-**Tanu**
+**Tanmay**
 GitHub: [Tanmay1Nandi](https://github.com/Tanmay1Nandi)
